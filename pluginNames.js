@@ -29,7 +29,6 @@ module.exports = {
             'frequentlyUsedSnapshots',
             'applicationConsistentSnapshots',
             'deprecatedImages',
-            'enableUsageExport',
             'instanceGroupAutoHealing',
             'publicDiskImages',
             'snapshotLabelsAdded',
@@ -166,5 +165,151 @@ module.exports = {
         "openHTTP",
         "instanceDefaultNetwork",
         "openAllPortsEgress"
-      ]
+    ],
+    cryptographickeys: [
+        'keyRotation',
+        'keyProtectionLevel',
+        'kmsPublicAccess' 
+    ],
+    clb: [
+        'clbHttpsOnly',
+        'clbNoInstances',
+        'clbSecurityPolicyEnabled',
+        'clbCDNEnabled',
+        'clbLoggingEnabled'
+    ],
+    api: [
+        'apiKeyRotation',
+        'apiKeyApplicationRestriction',
+        'apiKeyActiveServices',
+        'projectAPIKeys',
+        'apiKeyAPIRestriction'
+    ],
+    kubernetes: [
+    "privateEndpoint",
+    "monitoringEnabled",
+    "clusterLeastPrivilege",
+    "loggingEnabled",
+    "aliasIpRangesEnabled",
+    "legacyAuthorizationDisabled",
+    "masterAuthorizedNetwork",
+    "clusterLabelsAdded",
+    "webDashboardDisabled",
+    "defaultServiceAccount",
+    "cosImageEnabled",
+    "autoNodeRepairEnabled",
+    "autoNodeUpgradesEnabled",
+    "networkPolicyEnabled",
+    "privateClusterEnabled",
+    "basicAuthenticationDisabled",
+    "kubernetesAlphaDisabled",
+    "shieldedNodes",
+    "integrityMonitoringEnabled",
+    "secureBootEnabled",
+    "nodeEncryption",
+    "clusterEncryption",
+    "binaryAuthorizationEnabled",
+    "clientCertificateDisabled",
+    "clusterNetworkExposure"
+  ],
+  dns: [
+    'dnsSecEnabled',
+    'dnsSecSigningAlgorithm',
+    'dnsZoneLabelsAdded'
+  ],
+  logging: [
+    "auditLoggingEnabled",
+    "projectOwnershipLogging",
+    "storagePermissionsLogging",
+    "sqlConfigurationLogging",
+    "auditConfigurationLogging",
+    "customRoleLogging",
+    "vpcFirewallRuleLogging",
+    "vpcNetworkRouteLogging",
+    "vpcNetworkLogging",
+    "logSinksEnabled"
+  ],
+  pubsub: [
+    'topicEncryption',
+    'deadLetteringEnabled',
+    'topicLabelsAdded',
+    'topicAllUsersPolicy'
+  ],
+  dataflow: [
+    'dataflowHangedJobs',
+    'dataflowJobsEncryption'
+  ],
+  deploymentmanager: [
+    'deleteExpiredDeployments'
+  ],
+  spanner: [
+    'instanceNodeCount'
+  ],
+  cloudfunctions: [
+    "httpTriggerRequireHttps",
+    "functionDefaultServiceAccount",
+    "ingressAllTrafficDisabled",
+    "cloudFunctionLabelsAdded",
+    "cloudFunctionOldRuntime",
+    "functionAllUsersPolicy",
+    "serverlessVPCAccess",
+    "cloudFunctionNetworkExposure"
+  ],
+  cloudresourcemanager: [
+    "computeAllowedExternalIPs",
+    "disableAutomaticIAMGrants",
+    "disableGuestAttributes",
+    "disableSerialPortAccess",
+    "disableKeyCreation",
+    "disableKeyUpload",
+    "disableIdentityClusterCreation",
+    "detailedAuditLoggingMode",
+    "uniformBucketLevelAccess",
+    "requireOsLogin",
+    "restrictAuthorizedNetworks",
+    "disableDefaultEncryption",
+    "restrictLoadBalancerCreation",
+    "restrictSharedVPCSubnetworks",
+    "restrictVPCPeering",
+    "restrictVPNPeerIPs",
+    "disableVMIPForwarding",
+    "trustedImageProjects",
+    "skipDefaultNetworkCreation",
+    "locationBasedRestriction",
+    "disableServiceAccountCreation",
+    "essentialContactsConfigured"
+  ],
+  dataproc: [
+    'dataprocClusterLabelsAdded',
+    'hadoopSecureModeEnabled',
+    'dataprocClusterEncryption'
+  ],
+  bigtable: [
+    'bigtableInstanceLabelsAdded'
+  ],
+  serviceusage: [
+    'assetInventoryEnabled'
+  ],
+  security: [
+    'accessApprovalEnabled'
+  ],
+  cloudbuild: [
+    'commentControlEnabled',
+    'userApprovalEnabled',
+    'specificSourceBranch',
+    'triggerHasTags'
+  ],
+  composer: [
+    'environmentLabelsAdded',
+    'environmentEncryption',
+    'envDefaultServiceAccount',
+    'webserverPublicAccess'
+  ],
+  vertexai: [
+    'vertexAIDatasetLabels',
+    'vertexAIDatasetEncryption',
+    'modelLabelsAdded',
+    'modelEncryption'
+  ]
+
 }
