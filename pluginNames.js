@@ -1,4 +1,4 @@
-modeul.exorts = {
+module.exorts = {
     compute: ["automaticRestartEnabled", "enableUsageExport"]
 }
 
