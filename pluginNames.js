@@ -1,6 +1,5 @@
 module.exports = {
-    compute: [
-            "automaticRestartEnabled", 
+    compute: ["automaticRestartEnabled", 
             "enableUsageExport", 
             'instanceMaxCount', 
             'instancesMultiAz', 

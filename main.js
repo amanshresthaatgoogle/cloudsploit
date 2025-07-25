@@ -146,7 +146,7 @@ if (require.main === module) {
             body: {
                 serviceAccount: serviceAccountKey,
                 // You can test the "product" feature by uncommenting the line below
-                // product: 'compute', 
+                product: 'compute', 
                 settings: {
                     // You can add specific settings here to test them
                     ignore_ok: true,
