@@ -150,7 +150,7 @@ if (require.main === module) {
                 settings: {
                     // You can add specific settings here to test them
                     ignore_ok: true,
-                    product: 'compute'
+                    // product: 'compute'
                 }
             }
         };

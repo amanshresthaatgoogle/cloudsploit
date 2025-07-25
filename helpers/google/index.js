@@ -424,7 +424,7 @@ function makeApiCall(client, originalUrl, callCb, nextToken, config) {
 }
 
 function setData(collection, dataToAdd, postCall, parent, serviceInfo) {
-    console.log(`[PLUGINCHECK] ${JSON.stringify(serviceInfo, null, 2)}`);
+    // console.log(`[PLUGINCHECK] ${JSON.stringify(serviceInfo, null, 2)}`);
     if (!serviceInfo.maxLimit || !collection.data || (serviceInfo.maxLimit && collection.data && collection.data.length < serviceInfo.maxLimit)) {
         if (postCall && !!parent) {
             if (dataToAdd && dataToAdd.length) {
