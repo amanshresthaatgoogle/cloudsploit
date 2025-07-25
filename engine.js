@@ -50,8 +50,6 @@ async function uploadResultsToBlob(resultsObject, storageConnection, blobContain
  */
 var engine = function(cloudConfig, settings, mainCallback) {
 
-    console.log("Reached here with config")
-    console.log(cloudConfig)
     console.log("And settings")
     console.log(settings)
     // Initialize any suppression rules based on the the command line arguments

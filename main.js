@@ -3,6 +3,7 @@
  */
 
 // engine.js is the core CloudSploit scanner.
+const { request } = require('http');
 const engine = require('./engine.js');
 const pluginNames = require('./pluginNames.js')
 const fs = require('fs').promises;
@@ -89,9 +90,10 @@ exports.cloudsploitScanner = async (req, res) => {
     if (!req.body || !req.body.serviceAccount || !req.body.serviceAccount.project_id) {
         return res.status(400).send('Bad Request: "serviceAccount" key missing or it does not contain a "project_id" field.');
     }
-    
+
+    console.log(req.body.settings.product)
     const cloudConfig = req.body.serviceAccount;
-    const product = req.body.product;
+    const product = req.body.settings.product;
     var receivedProductList = [];
 
     if (product){
@@ -102,6 +104,7 @@ exports.cloudsploitScanner = async (req, res) => {
     cloudConfig.project = cloudConfig.project_id;
     var settings = req.body.settings || {};
     settings = {...settings, list_of_plugins: receivedProductList}
+
 
     try {
         const results = await runScan(cloudConfig, settings);
@@ -114,7 +117,7 @@ exports.cloudsploitScanner = async (req, res) => {
 
 
 // --- LOCAL TESTING EXAMPLE ---
-// This block demonstrates how to USE the new promise-based `runScan` function.
+// This block demonstrates how to test the cloudsploitScanner function locally.
 if (require.main === module) {
     (async () => {
         console.log('--- RUNNING IN LOCAL TEST MODE ---');
@@ -126,7 +129,6 @@ if (require.main === module) {
             const keyData = await fs.readFile(testKeyPath, 'utf8');
             serviceAccountKey = JSON.parse(keyData);
             
-            // The service account key MUST contain a project_id for local testing.
             if (!serviceAccountKey.project_id) {
                 throw new Error('The key.json file is missing the required "project_id" field.');
             }
@@ -138,29 +140,54 @@ if (require.main === module) {
             process.exit(1);
         }
         
-        const cloudConfig = serviceAccountKey;
-        // The CloudSploit engine requires a `project` property.
-        // We ensure it is set here before calling the scanner.
-        cloudConfig.project = cloudConfig.project_id;
-        
-        const settings = {
-            list_of_plugins: ["automaticRestartEnabled", "enableUsageExport"],
+        // 1. Simulate the request object (req) that the Cloud Function would receive.
+        const mockReq = {
+            method: 'POST',
+            body: {
+                serviceAccount: serviceAccountKey,
+                // You can test the "product" feature by uncommenting the line below
+                // product: 'compute', 
+                settings: {
+                    // You can add specific settings here to test them
+                    ignore_ok: true,
+                    product: 'compute'
+                }
+            }
         };
 
+        // 2. Simulate the response object (res) to capture the output.
+        const mockRes = {
+            _status: 200,
+            _json: null,
+            _sent: null,
+            status: function(code) {
+                this._status = code;
+                return this; // Allow chaining e.g., res.status(400).send()
+            },
+            send: function(data) {
+                this._sent = data;
+                console.log('\n--- MOCK RESPONSE (SENT) ---');
+                console.log(`Status: ${this._status}`);
+                console.log('Body:', this._sent);
+            },
+            json: function(data) {
+                this._json = data;
+                console.log('\n--- MOCK RESPONSE (JSON) ---');
+                console.log(`Status: ${this._status}`);
+                console.log('Body:');
+                console.log(JSON.stringify(this._json, null, 2)); // Pretty-print JSON
+            }
+        };
 
         try {
-            console.log(`\nAttempting to run scan...`);
-            const scanResults = await runScan(cloudConfig, settings);
-
-            console.log('\n--- SCAN RESULTS (JSON) ---');
-            console.log(JSON.stringify(scanResults, null, 2));
-
+            console.log(`\nAttempting to run cloudsploitScanner function...`);
+            // 3. Call the exported handler function with the mock objects.
+            await exports.cloudsploitScanner(mockReq, mockRes);
         } catch (error) {
             console.error('\n--- SCAN FAILED ---');
-            console.error('The runScan function rejected its promise:', error);
+            console.error('The cloudsploitScanner function encountered an unhandled error:', error);
         }
 
         console.log('\n--- LOCAL TEST MODE FINISHED ---');
     })();
 }
-
