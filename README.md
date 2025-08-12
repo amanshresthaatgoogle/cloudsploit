@@ -1,6 +1,6 @@
 ☁️ CloudSploit by Aqua Security REFACTORED - Cloud Security Scans
 =================
-CloudSploit is an open-source cloud security scanner that is designed to detect misconfigurations and compliance risks in public cloud environments. This is a [refactored version of the original project by Aqua Security](https://github.com/aquasecurity/cloudsploit), redesigned to support an agentic AI system for improved flexibility, local development, and GCP-focused use cases.
+CloudSploit is an open-source cloud security scanner that is designed to detect misconfigurations and compliance risks in public cloud environments. This is a [refactored version of the original project by Aqua Security](https://github.com/aquasecurity/cloudsploit), redesigned to support an [agentic AI system](https://github.com/jasminetntu/multiagent-security-gcp) for improved flexibility, local development, and GCP-focused use cases.
 
 ## Key Features
 - Refactored main interface (index.js->main.js) for modular, cloud function-compatible scanning.
@@ -25,7 +25,7 @@ node main.js
 Edit the mockReq at the bottom of main.js with your test credentials and product. 
 
 ## Deploying CloudSploit to Google Cloud Functions
-This deployment will allow CloudSploit to run independently in the cloud and respond to HTTP scan requests. This is necessary for compatibility with "Strawberry ScanCake," or the multiagent AI system that streamlines security analysis by leveraging agents & LLMs.
+This deployment will allow CloudSploit to run independently in the cloud and respond to HTTP scan requests. This is necessary for compatibility with "[Strawberry ScanCake](https://github.com/jasminetntu/multiagent-security-gcp)," or the multiagent AI system that streamlines security analysis by leveraging agents & LLMs.
 
 ### Step 1: Setup GCP Environment
 ```
@@ -75,7 +75,7 @@ The response will be a JSON object containing all detected vulnerabilities group
 
 ## How It Works
 ### Architecture Overview
-This refactor is designed to work as a part of a larger AI agentic system where agents communicate to initiate and interpret scans.
+This refactor is designed to work as a part of a larger [AI agentic system](https://github.com/jasminetntu/multiagent-security-gcp) where agents communicate to initiate and interpret scans.
 - Agents call main.js with a specific product (e.g., compute, IAM, storage)
 - pluginNames.js maps the product to a set of relevant plugins
 - engine.js executes only those plugins
